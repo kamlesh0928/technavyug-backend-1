@@ -24,13 +24,18 @@ const storage = new CloudinaryStorage({
       folder += "/projects/gallery";
     }
 
+    let resource_type = "auto";
+
     if (file.fieldname === "certificateFile") {
       folder += "/certificates";
+      if (file.mimetype === "application/pdf") {
+        resource_type = "raw";
+      }
     }
 
     return {
       folder,
-      resource_type: "auto",
+      resource_type,
     };
   },
 });
